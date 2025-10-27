@@ -1,4 +1,4 @@
-certifi==2025.10.5
+certifi==2021.10.8
 charset-normalizer==3.4.4
 idna==3.11
 pyodbc==5.3.0
