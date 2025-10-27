@@ -22,7 +22,7 @@ def segundaCrawler(): # esto es para ir probando sin tener que ir al sitio a cad
 def segunda_Crawler():
 
     link = f"https://newsapi.ecn.cl/NewsApi/emol/buscador/lasegunda?q=&size=50&from=0&fechaPublicacion=2025-10-27"
-    req = urllib.request.urlopen(
+    req = urllib.request.Request(
         link,
         data=None,
         headers={
