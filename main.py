@@ -16,12 +16,12 @@ def segundaCrawler(): # esto es para ir probando sin tener que ir al sitio a cad
 
         print(hits['_source']['permalink'])
         print(hits['_source']['fechaModificacion'])
-        #inserttoDatabase( )
+        #inserttoDatabase()
 
 
 def segunda_Crawler():
 
-    link = f"https://newsapi.ecn.cl/NewsApi/emol/buscador/lasegunda?q=&size=50&from=0&fechaPublicacion=2025-10-25"
+    link = f"https://newsapi.ecn.cl/NewsApi/emol/buscador/lasegunda?q=&size=50&from=0&fechaPublicacion=2025-10-27"
     req = urllib.request.Request(
         link,
         data=None,
@@ -40,7 +40,11 @@ def segunda_Crawler():
                  print(hits['_source']['texto'])
                  print(hits['_source']['permalink'])
                  print(hits['_source']['fechaModificacion'])
-
+                 titulo= hits['_source']['titulo']
+                 texto= cleanhtml(hits['_source']['texto'])
+                 link= hits['_source']['permalink']
+                 fechaModificacion= hits['_source']['fechaModificacion']
+                 inserttoDatabase(titulo, texto, link, fechaModificacion, id_diario=5640, fotourl='')
 
              except Exception as error:
                 print(error)
@@ -66,5 +70,5 @@ def cleanhtml(raw_html):
 #print(python_dict["hits"])
 
 if __name__ == '__main__':
-    segundaCrawler()
-    #segunda_Crawler()
+    #segundaCrawler()
+    segunda_Crawler()

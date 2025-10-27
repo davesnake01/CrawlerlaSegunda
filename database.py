@@ -27,7 +27,7 @@ def inserttoDatabase(titulo, texto, link , fecha, id_diario, fotourl):
 
     try:
 
-        storedProc = "Exec [dbo].[InsertFulltext] @leido = 0, @titular = ?, @link = ?," \
+        storedProc = "Exec [dbo].[InsertFulltext] @leido = 1, @titular = ?, @link = ?," \
                      " @id_pais = 1, @nota = ?, @foto = ?, @fecha = ?,  @id_diario = ?, @fecha_lectura =?, @autor = ''"
         params = (titulo, link, texto,fotourl,fecha, id_diario, fecha_lectura)
         print(titulo, link, id_diario, sep="\n")
