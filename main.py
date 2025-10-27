@@ -2,6 +2,7 @@ import json
 import re
 import urllib.request
 from database import inserttoDatabase
+from datetime import datetime, timedelta
 
 
 def segundaCrawler(): # esto es para ir probando sin tener que ir al sitio a cada rato.
@@ -20,8 +21,9 @@ def segundaCrawler(): # esto es para ir probando sin tener que ir al sitio a cad
 
 
 def segunda_Crawler():
-
-    link = f"https://newsapi.ecn.cl/NewsApi/emol/buscador/lasegunda?q=&size=50&from=0&fechaPublicacion=2025-10-28"
+    now = datetime.now() + timedelta(days=1)
+    fechaFin = now.strftime("%Y-%m-%d") # le agrego un dia más para que el sitio me devuelva los datos del dia en curso
+    link = f"https://newsapi.ecn.cl/NewsApi/emol/buscador/lasegunda?q=&size=50&from=0&fechaPublicacion={fechaFin}"
     req = urllib.request.Request(
         link,
         data=None,
@@ -35,15 +37,12 @@ def segunda_Crawler():
 
         for hits in data['hits']['hits']:
              try:
-                 print(hits['_source']['id'])
-                 print(hits['_source']['titulo'])
-                 print(hits['_source']['texto'])
-                 print(hits['_source']['permalink'])
-                 print(hits['_source']['fechaModificacion'])
                  titulo= hits['_source']['titulo']
                  texto= cleanhtml(hits['_source']['texto'])
                  link= hits['_source']['permalink']
                  fechaModificacion= hits['_source']['fechaModificacion']
+                 #print (titulo, texto, link, fechaModificacion, sep="\r")
+
                  inserttoDatabase(titulo, texto, link, fechaModificacion, id_diario=5640, fotourl='')
 
              except Exception as error:
