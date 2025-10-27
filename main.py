@@ -1,6 +1,6 @@
 import json
 import re
-import urllib
+import urllib.request
 from database import inserttoDatabase
 
 
@@ -22,7 +22,7 @@ def segundaCrawler(): # esto es para ir probando sin tener que ir al sitio a cad
 def segunda_Crawler():
 
     link = f"https://newsapi.ecn.cl/NewsApi/emol/buscador/lasegunda?q=&size=50&from=0&fechaPublicacion=2025-10-27"
-    req = urllib.request.Request(
+    req = urllib.request.urlopen(
         link,
         data=None,
         headers={
