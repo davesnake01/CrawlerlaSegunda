@@ -1,6 +1,8 @@
 import json
 import re
 import urllib.request
+from random import randint
+
 from database import inserttoDatabase
 from datetime import datetime, timedelta
 
@@ -42,7 +44,6 @@ def segunda_Crawler():
                  link= hits['_source']['permalink']
                  fechaModificacion= hits['_source']['fechaModificacion']
                  #print (titulo, texto, link, fechaModificacion, sep="\r")
-
                  inserttoDatabase(titulo, texto, link, fechaModificacion, id_diario=5640, fotourl='')
 
              except Exception as error:
@@ -56,6 +57,9 @@ def cleanhtml(raw_html):
   cleantext = re.sub(cleanr, '', raw_html)
   return cleantext
 
+def tiempo_espera():
+    espera = randint(300, 600)
+    return espera
 
 ## Enlace
 ## https://newsapi.ecn.cl/NewsApi/emol/buscador/lasegunda?q=&size=40&from=0&fechaPublicacion=2026-01-01
@@ -69,5 +73,11 @@ def cleanhtml(raw_html):
 #print(python_dict["hits"])
 
 if __name__ == '__main__':
+    while True:
+        tiempo = tiempo_espera()
+        print("Descargando\n")
+        print("=" * 15)
+        segunda_Crawler()
     #segundaCrawler()
-    segunda_Crawler()
+
+
