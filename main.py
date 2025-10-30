@@ -1,5 +1,6 @@
 import json
 import re
+import time
 import urllib.request
 from random import randint
 
@@ -78,6 +79,7 @@ if __name__ == '__main__':
         print("Descargando\n")
         print("=" * 15)
         segunda_Crawler()
+        time.sleep(tiempo)
     #segundaCrawler()
 
 
