@@ -41,6 +41,7 @@ def segunda_Crawler():
         for hits in data['hits']['hits']:
              try:
                  titulo= hits['_source']['titulo']
+                 titulo = titulo.replace('&quot;'  , '"')
                  texto= cleanhtml(hits['_source']['texto'])
                  link= hits['_source']['permalink']
                  fechaModificacion= hits['_source']['fechaModificacion']
